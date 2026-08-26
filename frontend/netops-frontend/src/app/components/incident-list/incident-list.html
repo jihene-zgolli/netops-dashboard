@@ -1,0 +1,25 @@
+<div class="incident-list">
+  <h2>Incidents réseau</h2>
+
+  <p *ngIf="loading()">Chargement...</p>
+  <p *ngIf="error()" class="error">{{ error() }}</p>
+
+  <table *ngIf="!loading() && !error()">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Type</th>
+        <th>Sévérité</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let incident of incidents()">
+        <td>{{ incident.title }}</td>
+        <td>{{ incident.type }}</td>
+        <td [class]="'severity-' + incident.severity">{{ incident.severity }}</td>
+        <td>{{ incident.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
