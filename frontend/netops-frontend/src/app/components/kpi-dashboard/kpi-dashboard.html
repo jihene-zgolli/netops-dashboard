@@ -1,10 +1,17 @@
 <div class="kpi-dashboard">
   <h2>Dashboard KPI</h2>
-  <div class="chart-container">
-    <canvas baseChart
-      [data]="chartData()"
-      [options]="chartOptions"
-      type="bar">
-    </canvas>
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Par sévérité</h3>
+      <canvas baseChart [data]="severityChartData()" [options]="barOptions" type="bar"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Par statut</h3>
+      <canvas baseChart [data]="statusChartData()" [options]="pieOptions" type="pie"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Par type</h3>
+      <canvas baseChart [data]="typeChartData()" [options]="doughnutOptions" type="doughnut"></canvas>
+    </div>
   </div>
 </div>
