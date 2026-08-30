@@ -1,1 +1,10 @@
-<p>kpi-dashboard works!</p>
+<div class="kpi-dashboard">
+  <h2>Dashboard KPI</h2>
+  <div class="chart-container">
+    <canvas baseChart
+      [data]="chartData()"
+      [options]="chartOptions"
+      type="bar">
+    </canvas>
+  </div>
+</div>
