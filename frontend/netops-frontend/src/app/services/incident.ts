@@ -14,7 +14,7 @@ export interface Incident {
   providedIn: 'root',
 })
 export class IncidentService {
-  private apiUrl = 'https://ideal-palm-tree-gwx6474795wc7w7-5000.app.github.dev/api/incidents';
+private apiUrl = '/api/incidents';
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Incident[]> {
