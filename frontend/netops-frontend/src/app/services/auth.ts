@@ -17,7 +17,7 @@ interface RegisterPayload {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = '/api/auth';
+  private apiUrl = 'https://netops-dashboard.onrender.com/api/auth';
   isLoggedIn = signal(!!localStorage.getItem('token'));
   currentRole = signal(localStorage.getItem('role') || '');
   currentUsername = signal(localStorage.getItem('username') || '');

@@ -14,8 +14,7 @@ export interface Incident {
 
 @Injectable({ providedIn: 'root' })
 export class IncidentService {
-  private apiUrl = '/api/incidents';
-
+private apiUrl = 'https://netops-dashboard.onrender.com/api/incidents';
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Incident[]> {
