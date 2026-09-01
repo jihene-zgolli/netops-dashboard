@@ -1,8 +1,35 @@
-<nav class="navbar">
-  <a routerLink="/incidents">Incidents</a>
-  <a routerLink="/dashboard">Dashboard KPI</a>
-  <a routerLink="/create">Créer un incident</a>
-  <a routerLink="/login">Connexion</a>
-</nav>
+<div class="app-layout" [class.no-sidebar]="!authService.isLoggedIn()">
+  <aside class="sidebar" *ngIf="authService.isLoggedIn()">
+    <div class="logo">
+      <span class="logo-icon">📡</span>
+      <span class="logo-text">NetOps</span>
+    </div>
 
-<router-outlet></router-outlet>
+    <nav class="sidebar-nav">
+      <a routerLink="/incidents" routerLinkActive="active">
+        <span class="icon">📋</span> Incidents
+      </a>
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <span class="icon">📊</span> Dashboard KPI
+      </a>
+      <a routerLink="/create" routerLinkActive="active">
+        <span class="icon">➕</span> Créer un incident
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <span class="avatar">{{ authService.currentUsername().charAt(0).toUpperCase() }}</span>
+        <div class="user-details">
+          <span class="username">{{ authService.currentUsername() }}</span>
+          <span class="role">{{ authService.currentRole() }}</span>
+        </div>
+      </div>
+      <button (click)="logout()">Déconnexion</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

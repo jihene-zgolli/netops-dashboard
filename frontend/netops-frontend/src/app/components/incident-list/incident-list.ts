@@ -17,6 +17,11 @@ export class IncidentList implements OnInit {
   constructor(private incidentService: IncidentService) {}
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(): void {
+    this.loading.set(true);
     this.incidentService.getAll().subscribe({
       next: (data) => {
         this.incidents.set(data);
@@ -27,6 +32,19 @@ export class IncidentList implements OnInit {
         this.loading.set(false);
         console.error(err);
       }
+    });
+  }
+
+  updateStatus(incident: Incident, newStatus: string): void {
+    this.incidentService.update(incident._id!, { status: newStatus }).subscribe({
+      next: () => this.load()
+    });
+  }
+
+  deleteIncident(id: string): void {
+    if (!confirm('Supprimer cet incident ?')) return;
+    this.incidentService.delete(id).subscribe({
+      next: () => this.load()
     });
   }
 }

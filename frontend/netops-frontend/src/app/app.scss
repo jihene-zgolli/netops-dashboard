@@ -1,18 +1,136 @@
-.navbar {
+.app-layout {
   display: flex;
-  gap: 2rem;
-  padding: 1rem 2rem;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
   background: #1e293b;
-  border-bottom: 1px solid #334155;
+  border-right: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 
-  a {
-    color: #94a3b8;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    border-bottom: 1px solid #334155;
+  }
 
-    &:hover {
-      color: #3b82f6;
+  .sidebar-nav {
+    flex: 1;
+    padding: 1rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.7rem 1rem;
+      color: #94a3b8;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s;
+
+      .icon { font-size: 1.1rem; }
+
+      &:hover {
+        background: #273449;
+        color: #e2e8f0;
+      }
+
+      &.active {
+        background: #3b82f6;
+        color: white;
+      }
     }
+  }
+
+  .sidebar-footer {
+    padding: 1rem;
+    border-top: 1px solid #334155;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #3b82f6;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .user-details {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .username {
+          color: #e2e8f0;
+          font-size: 0.9rem;
+          font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .role {
+          color: #64748b;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    button {
+      width: 100%;
+      background: #475569;
+      font-size: 0.85rem;
+
+      &:hover { background: #334155; }
+    }
+
+    .login-link {
+      display: block;
+      text-align: center;
+      padding: 0.6rem;
+      background: #3b82f6;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  }
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  min-width: 0;
+}
+.no-sidebar {
+  .main-content {
+    width: 100%;
   }
 }

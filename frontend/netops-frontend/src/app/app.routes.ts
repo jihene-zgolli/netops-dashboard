@@ -4,10 +4,11 @@ import { IncidentForm } from './components/incident-form/incident-form';
 import { KpiDashboard } from './components/kpi-dashboard/kpi-dashboard';
 import { Login } from './components/login/login';
 import { Register } from './components/register/register';
+import { Home } from './components/home/home';
 import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-  { path: '', component: Login },
+  { path: '', component: Home },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'incidents', component: IncidentList, canActivate: [authGuard] },

@@ -37,3 +37,43 @@
   .severity-high { color: #fb923c; font-weight: 600; }
   .severity-critical { color: #f87171; font-weight: 700; }
 }
+  select {
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #e2e8f0;
+    font-size: 0.85rem;
+  }
+
+  .delete-btn {
+    background: #7f1d1d;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+
+    &:hover {
+      background: #991b1b;
+    }
+      .actions-col {
+    text-align: center;
+    width: 60px;
+  }
+
+  .icon-btn {
+    background: transparent;
+    border: 1px solid #334155;
+    padding: 0.5rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    transition: all 0.2s;
+
+    &.delete:hover {
+      background: rgba(248, 113, 113, 0.1);
+      border-color: #f87171;
+      color: #f87171;
+    }
+  }
+  }

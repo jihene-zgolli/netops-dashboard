@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import{HttpClient} from '@angular/common/http';
-import {Observable} from'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 export interface Incident {
   _id?: string;
   title: string;
@@ -10,11 +11,11 @@ export interface Incident {
   kpiImpact: number;
   createdAt?: string;
 }
-@Injectable({
-  providedIn: 'root',
-})
+
+@Injectable({ providedIn: 'root' })
 export class IncidentService {
-private apiUrl = '/api/incidents';
+  private apiUrl = '/api/incidents';
+
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Incident[]> {

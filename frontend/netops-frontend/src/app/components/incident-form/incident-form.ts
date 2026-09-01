@@ -24,7 +24,7 @@ export class IncidentForm {
     this.incidentService.create({ title: this.title, type: this.type, severity: this.severity }).subscribe({
       next: () => {
         this.success = true;
-        this.router.navigate(['/']);
+        this.router.navigate(['/incidents']);
       },
       error: (err) => {
         this.error = err.status === 401 ? 'Vous devez être connectée' : 'Erreur lors de la création';
