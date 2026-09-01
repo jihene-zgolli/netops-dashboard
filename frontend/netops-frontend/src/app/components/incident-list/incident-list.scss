@@ -1,10 +1,53 @@
 .incident-list {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 2rem auto;
   padding: 0 2rem;
 
+  .filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+
+    .search-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+
+      &:focus {
+        outline: none;
+        border-color: #3b82f6;
+      }
+    }
+
+    select {
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #64748b;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
   table {
     width: 100%;
+    min-width: 700px;
     border-collapse: collapse;
     background: #1e293b;
     border-radius: 8px;
@@ -14,6 +57,7 @@
   th, td {
     padding: 0.9rem 1.2rem;
     text-align: left;
+    white-space: nowrap;
   }
 
   th {
@@ -36,8 +80,8 @@
   .severity-medium { color: #facc15; font-weight: 600; }
   .severity-high { color: #fb923c; font-weight: 600; }
   .severity-critical { color: #f87171; font-weight: 700; }
-}
-  select {
+
+  td select {
     padding: 0.4rem 0.6rem;
     border-radius: 6px;
     border: 1px solid #334155;
@@ -46,15 +90,7 @@
     font-size: 0.85rem;
   }
 
-  .delete-btn {
-    background: #7f1d1d;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.9rem;
-
-    &:hover {
-      background: #991b1b;
-    }
-      .actions-col {
+  .actions-col {
     text-align: center;
     width: 60px;
   }
@@ -76,4 +112,4 @@
       color: #f87171;
     }
   }
-  }
+}

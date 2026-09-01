@@ -1,10 +1,38 @@
 <div class="incident-list">
   <h2>Incidents réseau</h2>
 
+  <div class="filters" *ngIf="!loading() && !error()">
+    <input
+      type="text"
+      placeholder="Rechercher un incident..."
+      [ngModel]="searchTerm()"
+      (ngModelChange)="onSearchChange($event)"
+      class="search-input">
+
+    <select [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event)">
+      <option value="all">Tous les statuts</option>
+      <option value="open">Ouvert</option>
+      <option value="in_progress">En cours</option>
+      <option value="resolved">Résolu</option>
+    </select>
+
+    <select [ngModel]="severityFilter()" (ngModelChange)="severityFilter.set($event)">
+      <option value="all">Toutes les sévérités</option>
+      <option value="low">Faible</option>
+      <option value="medium">Moyenne</option>
+      <option value="high">Haute</option>
+      <option value="critical">Critique</option>
+    </select>
+  </div>
+
   <p *ngIf="loading()">Chargement...</p>
   <p *ngIf="error()" class="error">{{ error() }}</p>
 
-  <table *ngIf="!loading() && !error()">
+  <p *ngIf="!loading() && !error() && filteredIncidents().length === 0" class="empty-state">
+    Aucun incident ne correspond à ces critères
+  </p>
+
+  <table *ngIf="!loading() && !error() && filteredIncidents().length > 0">
     <thead>
       <tr>
         <th>Titre</th>
@@ -15,7 +43,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let incident of incidents()">
+      <tr *ngFor="let incident of filteredIncidents()">
         <td>{{ incident.title }}</td>
         <td>{{ incident.type }}</td>
         <td [class]="'severity-' + incident.severity">{{ incident.severity }}</td>

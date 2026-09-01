@@ -1,11 +1,12 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { IncidentService, Incident } from '../../services/incident';
 
 @Component({
   selector: 'app-incident-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './incident-list.html',
   styleUrl: './incident-list.scss'
 })
@@ -13,6 +14,29 @@ export class IncidentList implements OnInit {
   incidents = signal<Incident[]>([]);
   loading = signal(true);
   error = signal('');
+
+  searchTerm = signal('');
+  statusFilter = signal('all');
+  severityFilter = signal('all');
+
+  filteredIncidents = computed(() => {
+    let result = this.incidents();
+
+    const term = this.searchTerm().toLowerCase().trim();
+    if (term) {
+      result = result.filter((i) => i.title.toLowerCase().includes(term));
+    }
+
+    if (this.statusFilter() !== 'all') {
+      result = result.filter((i) => i.status === this.statusFilter());
+    }
+
+    if (this.severityFilter() !== 'all') {
+      result = result.filter((i) => i.severity === this.severityFilter());
+    }
+
+    return result;
+  });
 
   constructor(private incidentService: IncidentService) {}
 
@@ -46,5 +70,9 @@ export class IncidentList implements OnInit {
     this.incidentService.delete(id).subscribe({
       next: () => this.load()
     });
+  }
+
+  onSearchChange(value: string): void {
+    this.searchTerm.set(value);
   }
 }
